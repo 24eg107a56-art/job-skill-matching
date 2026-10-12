@@ -13,7 +13,7 @@ import java.util.List;
 @Configuration
 public class CorsConfig {
 
-    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000}")
+    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000,https://24eg107a56-art.github.io}")
     private String allowedOrigins;
 
     @Bean
@@ -25,6 +25,7 @@ public class CorsConfig {
                 .toList();
         
         configuration.setAllowedOrigins(origins);
+        configuration.addAllowedOriginPattern("https://*.github.io");
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin"));
         configuration.setExposedHeaders(List.of("Authorization"));
